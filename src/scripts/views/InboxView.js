@@ -1,5 +1,6 @@
 import React from 'react'
 import $ from 'jquery'
+import Header from './header'
 
 var InboxView = React.createClass({
 
@@ -19,8 +20,8 @@ var InboxView = React.createClass({
 
 	render: function() {
 		return (
-			<div class="inboxView">
-				<a href="#home">home</a>
+			<div className="inboxView">
+				<Header />
 				<SearchForm />
 				<Inbox coll={this.props.coll} />
 			</div>
@@ -30,7 +31,7 @@ var InboxView = React.createClass({
 
 var Inbox = React.createClass({
 	_makeMsg: function(record) {
-		return <Msg record={record} />
+		return <Msg key={record.id} record={record} />
 	},
 
 	render: function() {
@@ -45,21 +46,19 @@ var Inbox = React.createClass({
 var Msg = React.createClass({
 
 	_removeModel: function() {
-		this.props.record.destroy()
-		$.ajax({
-			type: 'delete',
-			url: '/api/messages',
-			data: JSON.stringify({_id: 1}),
-			dataType: 'json'
-		}).then(function(res){console.log(res)})
+		this.props.record.destroy({
+			url: `/api/messages/${this.props.record.id}`		
+		})
 	},
 
 	render: function() {
 		return (
 			<div className="msg">
-				<p>to: {this.props.record.get('to')}</p>
-				<p>from: {this.props.record.get('from')}</p>
-				<p>{this.props.record.get('content')}</p>
+				<div className="msgDeets">
+					<p>to: {this.props.record.get('to')}</p>
+					<p>from: {this.props.record.get('from')}</p>
+					<p>{this.props.record.get('content')}</p>
+				</div>
 				<button onClick={this._removeModel} >X</button>
 			</div>
 			)
@@ -69,7 +68,7 @@ var Msg = React.createClass({
 var SearchForm = React.createClass({
 	render: function() {
 		return (
-			<div class="searchForm">
+			<div className="searchForm">
 				<input name="to" placeholder="to"></input>
 				<input name="from" placeholder="from"></input>
 			</div>

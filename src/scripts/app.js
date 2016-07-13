@@ -4,6 +4,7 @@ import Backbone from 'backbone'
 import HomeView from './views/HomeView'
 import InboxView from './views/InboxView'
 import ComposeView from './views/ComposeView'
+import LoginView from './views/LoginView'
 import {MsgCollection} from './models/models'
 
 const app = function() {
@@ -15,6 +16,7 @@ const app = function() {
 			"messages/read": "showMsgs",
 			"messages/write": "showMsgEditor",
 			"home": "showHome",
+			"login": "showLogin",
 			"*catchall": "redirect"
 		},
 
@@ -24,6 +26,10 @@ const app = function() {
 
 		showHome: function() {
 			ReactDOM.render(<HomeView />, document.querySelector('.container'))
+		},
+
+		showLogin: function() {
+			ReactDOM.render(<LoginView />, document.querySelector('.container'))
 		},
 
 		showMsgs: function() {

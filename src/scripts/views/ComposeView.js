@@ -1,11 +1,13 @@
 import React from 'react'
 import {MsgModel} from '../models/models'
+import Header from './header'
+
 
 const ComposeView = React.createClass({
 	render: function() {
 		return (
 			<div className="composeView">
-				<a href="#home">home</a>
+				<Header />
 				<ComposeForm />
 			</div>
 			)
