@@ -1,4 +1,5 @@
 import React from 'react'
+import $ from 'jquery'
 
 var InboxView = React.createClass({
 
@@ -9,7 +10,7 @@ var InboxView = React.createClass({
 	},
 
 	componentWillMount: function() {
-		this.state.coll.on('sync',()=>{
+		this.state.coll.on('sync update',()=>{
 			this.setState({
 				coll: this.state.coll
 			})
@@ -42,12 +43,24 @@ var Inbox = React.createClass({
 })
 
 var Msg = React.createClass({
+
+	_removeModel: function() {
+		this.props.record.destroy()
+		$.ajax({
+			type: 'delete',
+			url: '/api/messages',
+			data: JSON.stringify({_id: 1}),
+			dataType: 'json'
+		}).then(function(res){console.log(res)})
+	},
+
 	render: function() {
 		return (
 			<div className="msg">
 				<p>to: {this.props.record.get('to')}</p>
 				<p>from: {this.props.record.get('from')}</p>
 				<p>{this.props.record.get('content')}</p>
+				<button onClick={this._removeModel} >X</button>
 			</div>
 			)
 	}

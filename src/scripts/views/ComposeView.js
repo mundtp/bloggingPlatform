@@ -1,5 +1,5 @@
 import React from 'react'
-import {MsgModel} from './models'
+import {MsgModel} from '../models/models'
 
 const ComposeView = React.createClass({
 	render: function() {
@@ -20,6 +20,8 @@ const ComposeForm = React.createClass({
 			from: e.target.from.value,
 			content: e.target.content.value
 		})
+		// makes a post request to the url set as a property on the model. 
+		// all of the model's attributes will comprise the body of the request.
 		newMsg.save()
 	},
 

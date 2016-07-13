@@ -14,6 +14,13 @@ const msgSchema = new Schema({
 	from: String
 })
 
+const listingSchema = new Schema({
+	listingId: String,
+	title: String,
+	thumbnailUrl: String,
+	price: String
+})
+
 module.exports = {
   User: createModel('User', usersSchema),
   Msg: createModel('Msg', msgSchema)

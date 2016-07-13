@@ -1,10 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Backbone from 'backbone'
-import HomeView from './HomeView'
-import InboxView from './InboxView'
-import ComposeView from './ComposeView'
-import {MsgCollection} from './models'
+import HomeView from './views/HomeView'
+import InboxView from './views/InboxView'
+import ComposeView from './views/ComposeView'
+import {MsgCollection} from './models/models'
 
 const app = function() {
 
