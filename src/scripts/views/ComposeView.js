@@ -1,5 +1,6 @@
 import React from 'react'
 import {MsgModel} from '../models/models'
+import {User} from '../models/models'
 import Header from './header'
 
 
@@ -17,9 +18,11 @@ const ComposeView = React.createClass({
 const ComposeForm = React.createClass({
 
 	_saveMsg: function(e) {
+		e.preventDefault()
+		
 		var newMsg = new MsgModel({
 			to: e.target.to.value,
-			from: e.target.from.value,
+			from: User.getCurrentUser().email,
 			content: e.target.content.value
 		})
 		// makes a post request to the url set as a property on the model. 
@@ -31,7 +34,6 @@ const ComposeForm = React.createClass({
 		return (
 			<form onSubmit={this._saveMsg}>
 				<input name="to" placeholder="to" />
-				<input name="from" placeholder="from" />
 				<input name="content" placeholder="content" />
 				<button type="submit" value="send!">send!</button>
 			</form>

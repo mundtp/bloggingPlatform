@@ -9,6 +9,10 @@ h1 {
 	color: fuchsia;
 }
 
+h1,h2,h3,h4,h5,h6 {
+	text-align: center;
+}
+
 $ourOrange: #FF840A;
 $ourPink: #FE0AFF;
 $ourBlue: #0A85FF;
@@ -48,12 +52,17 @@ form {
     padding: 3%;
     text-align: center;
 
+    h3 {
+    	font-size: 36px;
+    }
+
     input {
-    	width:95%;
+    	width:60%;
     	margin: 3% auto; 
     	border: 2px solid $ourBlue;
     	padding: 1.5%;
 	    display: block;
+	    font-size: 24px;
     }
 
     input:focus {

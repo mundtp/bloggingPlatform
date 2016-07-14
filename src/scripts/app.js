@@ -1,11 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Backbone from 'backbone'
-import HomeView from './views/HomeView'
+import Dashboard from './views/HomeView'
 import InboxView from './views/InboxView'
 import ComposeView from './views/ComposeView'
 import LoginView from './views/LoginView'
 import {MsgCollection} from './models/models'
+import {User}  from './models/models'
 
 export const APP_NAME = "mongoMessages"
 
@@ -27,7 +28,7 @@ const app = function() {
 		},
 
 		showHome: function() {
-			ReactDOM.render(<HomeView />, document.querySelector('.container'))
+			ReactDOM.render(<Dashboard />, document.querySelector('.container'))
 		},
 
 		showLogin: function() {
@@ -36,7 +37,9 @@ const app = function() {
 
 		showMsgs: function() {
 			var coll = new MsgCollection()
-			coll.fetch()
+			coll.fetch().fail(function(err){
+				console.log(err)
+			})
 			ReactDOM.render(<InboxView coll={coll} />, document.querySelector('.container'))
 		},
 
@@ -45,6 +48,11 @@ const app = function() {
 		},
 
 		initialize: function() {
+			this.on("route",()=> {
+				if (!User.getCurrentUser()) {
+					location.hash = "login"
+				}
+			})
 			Backbone.history.start()
 		}
 	})

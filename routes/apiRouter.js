@@ -14,13 +14,35 @@ apiRouter.get('/messages',function(request,response) {
   })
 })  
 
+// read many
+apiRouter.get('/myMessages',function(request,response) {
+  //first argument gives the criteria (WHICH msgs do i want)
+  if (request.user) { // if there is currently a logged-in user
+    Msg.find({to:request.user.email}, function(err,records) {
+      if (err) {
+        response.json({
+          error: err
+        })
+      }
+      else {
+        response.json(records)
+      }
+    })
+  }
+  else {
+    response.status(404).json({
+      error: 'no one is logged in'
+    })
+  }
+})
+
+
 // write one
 apiRouter.post('/messages',function(request,response) {
   let newRecord = new Msg(request.body)
   newRecord.save(function(err) {
     if (err) {
-      console.log(err)
-      response.send(err)
+      response.status(404).send(err)
     }
     else {
       response.json(newRecord)

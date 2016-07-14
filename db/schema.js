@@ -17,9 +17,11 @@ const postsSchema = new Schema({
 })
 
 const msgSchema = new Schema({
-	content: String,
-	to: String,
-	from: String
+	content: { type: String },
+  thread_id: {type: String},
+  reply_to: {type: String},
+	to: {type: String, required: true},
+	from: {type: String, required: true}
 })
 
 const listingSchema = new Schema({

@@ -1,25 +1,23 @@
-import {UserModel} from './models/models'
+import {User} from './models/models'
 
 const ACTIONS = {
 	registerUser: function(email,password) {
-		var newUsr = new UserModel()
-		return newUsr.register(email,password).then(function(resp){
+		console.log(email,password)
+		return User.register(email,password).then((resp) => {
 			console.log(resp)
-			return newUsr.logUserIn()
+			return this.logUserIn(email,password)
 		})
 	},
 
 	logUserIn: function(email,password) {
-		var newUsr = new UserModel()
-		return newUsr.login(email,password).then(function(resp){
+		return User.login(email,password).then(function(resp){
 			console.log(resp)
 			location.hash = "home"
 		})
 	},
 
 	logUserOut: function() {
-		let newUsr = new UserModel()
-		return newUsr.logout().then(() => {
+		return User.logout().then(() => {
 			location.hash = "login"
 		})
 	}

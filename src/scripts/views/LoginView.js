@@ -24,8 +24,8 @@ const RegisterBox = React.createClass({
 	render: function() {
 		return (
 			<div className="loginBox register">
-				<h3>Register</h3>
-				<form onClick={this._handleRegister} >
+				<form onSubmit={this._handleRegister} >
+					<h3>Register</h3>
 					<input type="email" name="email" placeholder="enter your email" />
 					<input type="password" name="password" placeholder="enter a password" />
 					<button type="submit">sign up!</button>

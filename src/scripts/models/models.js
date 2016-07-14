@@ -13,10 +13,10 @@ const MsgModel = Backbone.Model.extend({
 
 const MsgCollection = Backbone.Collection.extend({
 	model: MsgModel,
-	url: "/api/messages"
+	url: "/api/myMessages"
 })
 
-const UserModel = Backbone.Model.extend({
+const User = {
 	register: function(email,password) {
 		return $.ajax({
 			type: 'post',
@@ -25,8 +25,9 @@ const UserModel = Backbone.Model.extend({
 				email: email,
 				password: password
 			}
-		}).then((email,password)=>this.login(email,password))
+		})
 	},
+
 	login: function(email,password) {
 		return $.ajax({
 			type: 'post',
@@ -37,17 +38,19 @@ const UserModel = Backbone.Model.extend({
 			}
 		}).then((userData) => {
 			localStorage[APP_NAME] = JSON.stringify(userData)
+			return userData
 		})
 	},
+
 	logout: function() {
 		return $.getJSON('/auth/logout').then(()=>{
 			localStorage[APP_NAME] = null
 		})
-	}
-})
+	},
 
-UserModel.getCurrentUser = function() {
+	getCurrentUser: function() {
 		return localStorage[APP_NAME] ? JSON.parse(localStorage[APP_NAME]) : null
 	}
+}
 
-export {UserModel,MsgModel,MsgCollection}
+export {User,MsgModel,MsgCollection}

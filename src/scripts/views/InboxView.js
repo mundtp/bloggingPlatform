@@ -22,7 +22,6 @@ var InboxView = React.createClass({
 		return (
 			<div className="inboxView">
 				<Header />
-				<SearchForm />
 				<Inbox coll={this.props.coll} />
 			</div>
 			)
