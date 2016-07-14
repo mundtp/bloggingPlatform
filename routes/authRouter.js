@@ -46,7 +46,6 @@ authRouter
   authRouter
     .get('/logout', function (req, res) {
       if (req.user) req.logout();
-      res.redirect('/')
     })
 
 

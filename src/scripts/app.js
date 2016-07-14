@@ -7,6 +7,8 @@ import ComposeView from './views/ComposeView'
 import LoginView from './views/LoginView'
 import {MsgCollection} from './models/models'
 
+export const APP_NAME = "mongoMessages"
+
 const app = function() {
 
 
