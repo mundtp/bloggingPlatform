@@ -16,9 +16,10 @@ apiRouter.get('/messages',function(request,response) {
 
 // read many
 apiRouter.get('/myMessages',function(request,response) {
+  console.log('finding from user email')
   //first argument gives the criteria (WHICH msgs do i want)
   if (request.user) { // if there is currently a logged-in user
-    Msg.find({to:request.user.email}, function(err,records) {
+    Msg.find({from:request.user.email}, function(err,records) {
       if (err) {
         response.json({
           error: err

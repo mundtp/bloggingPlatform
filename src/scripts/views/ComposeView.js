@@ -21,21 +21,22 @@ const ComposeForm = React.createClass({
 		e.preventDefault()
 		
 		var newMsg = new MsgModel({
-			to: e.target.to.value,
 			from: User.getCurrentUser().email,
-			content: e.target.content.value
+			content: e.target.content.value,
+			comments: ''
 		})
 		// makes a post request to the url set as a property on the model. 
 		// all of the model's attributes will comprise the body of the request.
 		newMsg.save()
+		e.target.content.value = ''
 	},
 
 	render: function() {
 		return (
 			<form onSubmit={this._saveMsg}>
-				<input name="to" placeholder="to" />
+				
 				<input name="content" placeholder="content" />
-				<button type="submit" value="send!">send!</button>
+				<button type="submit" value="send!">Post</button>
 			</form>
 			)
 	}

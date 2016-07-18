@@ -1,9 +1,6 @@
 import React from 'react'
 import $ from 'jquery'
-import {MsgModel} from '../models/models'
-import {User} from '../models/models'
 import Header from './header'
-import Backbone from 'backbone'
 
 var InboxView = React.createClass({
 
@@ -53,47 +50,14 @@ var Msg = React.createClass({
 		})
 	},
 
-	_handleKD: function(e) {
-		if(e.keyCode === 13){
-			var content = this.props.record.attributes.content 
-			var fro = this.props.record.attributes.from
-			var co = this.props.record.attributes.comments
-			var newco = co + '\n' + e.target.value
-			this._removeModel()
-			var newMsg = new MsgModel({
-			from: fro,
-			content: content,
-			comments: newco
-			})
-			newMsg.save()
-			location.hash = "commentPosted"
-		}
-	},
-
-	_makeComment: function(record) {
-		return <p key={record}>{record}</p>
-	},
-
-
-	_makeArray: function(){
-		var commentArray = this.props.record.get('comments').split('\n')
-		return commentArray.map(this._makeComment)
-	},
-
 	render: function() {
-
 		return (
 			<div className="msg">
 				<div className="msgDeets">
 					<p>Author: {this.props.record.get('from')}</p>
-					<p id='content'>{this.props.record.get('content')}</p>
-					<p>Comments: </p>
-					{this._makeArray()}
+					<p>{this.props.record.get('content')}</p>
 				</div>
-				<input className='commentInput' onKeyDown={this._handleKD} type="text" placeholder="Add a comment..." />
-				<div>
-				<button onClick={this._removeModel}>Delete Post</button>
-				</div>
+				<button onClick={this._removeModel} >Delete Post</button>
 			</div>
 			)
 	}

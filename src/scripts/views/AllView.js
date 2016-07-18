@@ -5,7 +5,7 @@ import {User} from '../models/models'
 import Header from './header'
 import Backbone from 'backbone'
 
-var InboxView = React.createClass({
+var AllView = React.createClass({
 
 	getInitialState: function() {
 		return {
@@ -111,4 +111,4 @@ var SearchForm = React.createClass({
 })
 
 
-export default InboxView
+export default AllView

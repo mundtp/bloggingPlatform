@@ -18,10 +18,9 @@ const postsSchema = new Schema({
 
 const msgSchema = new Schema({
 	content: { type: String },
-  thread_id: {type: String},
-  reply_to: {type: String},
-	to: {type: String, required: true},
-	from: {type: String, required: true}
+	from: {type: String, required: true},
+  comments: { type: String }
+
 })
 
 const listingSchema = new Schema({

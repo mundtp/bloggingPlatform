@@ -5,8 +5,16 @@ const Header = React.createClass({
 	render: function() {
 		return (
 			<div id="headerContainer">
-				<marquee height="50" behavior="alternate" direction="up" >Mongo Messages</marquee>
+				<h1>Blogging Platform</h1>
+
+				<div className="topborder">
+				</div>
+
 				<NavBar />
+
+				<div className="bottomborder">
+				</div>
+
 			</div>
 			)
 	}
@@ -16,11 +24,12 @@ const NavBar = React.createClass({
 	render: function() {
 		return (
 			<div id="navBar">
-				<a href="#login">log in</a>
-				<a href="#home">home</a>
-				<a href="#messages/read">inbox</a>
-				<a href="#messages/write">compose</a>
-				<a href="#" onClick={ACTIONS.logUserOut} >log out</a>
+				<a href="#login">Log In</a>
+				<a href="#home">Home</a>
+				<a href="#messages/read">All Posts</a>
+				<a href="#messages/read/myposts">My Posts</a>
+				<a href="#messages/write">Compose</a>
+				<a href="#" onClick={ACTIONS.logUserOut} >Log Out</a>
 			</div>
 			)
 	}

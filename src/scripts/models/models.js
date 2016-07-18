@@ -13,6 +13,11 @@ const MsgModel = Backbone.Model.extend({
 
 const MsgCollection = Backbone.Collection.extend({
 	model: MsgModel,
+	url: "/api/messages"
+})
+
+const MyMsgCollection = Backbone.Collection.extend({
+	model: MsgModel,
 	url: "/api/myMessages"
 })
 
@@ -53,4 +58,4 @@ const User = {
 	}
 }
 
-export {User,MsgModel,MsgCollection}
+export {User,MsgModel,MsgCollection,MyMsgCollection}
