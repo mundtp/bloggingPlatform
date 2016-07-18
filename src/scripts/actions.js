@@ -2,7 +2,6 @@ import {User} from './models/models'
 
 const ACTIONS = {
 	registerUser: function(email,password) {
-		console.log(email,password)
 		return User.register(email,password).then((resp) => {
 			return this.logUserIn(email,password)
 		})
